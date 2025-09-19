@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SurfaceType" load_steps=2 format=3 uid="uid://cfkuw5qcj6uv"]
+
+[ext_resource type="Script" uid="uid://bbaql7nsslqcn" path="res://Surfaces/SurfaceType.gd" id="1_nan38"]
+
+[resource]
+script = ExtResource("1_nan38")
+surface_type = "Mud"
+friction_multi = 2.0
+accel_multi = 0.6
+max_speed_multi = 0.7
+turn_speed_multi = 1.2
+drift_factor_multi = 0.5
+color = Color(0.367415, 0.174267, 0, 1)
+metadata/_custom_type_script = "uid://bbaql7nsslqcn"

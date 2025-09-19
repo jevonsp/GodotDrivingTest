@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SurfaceType" load_steps=2 format=3 uid="uid://ctkvliyxn5py1"]
+
+[ext_resource type="Script" uid="uid://bbaql7nsslqcn" path="res://Surfaces/SurfaceType.gd" id="1_qdos3"]
+
+[resource]
+script = ExtResource("1_qdos3")
+surface_type = "Ice"
+friction_multi = 0.2
+accel_multi = 0.8
+max_speed_multi = 1.0
+turn_speed_multi = 0.8
+drift_factor_multi = 0.3
+color = Color(1.34766e-06, 0.646882, 0.647538, 1)
+metadata/_custom_type_script = "uid://bbaql7nsslqcn"

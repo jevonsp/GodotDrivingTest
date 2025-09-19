@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SurfaceType" load_steps=2 format=3 uid="uid://dcd7cfp8qj5gh"]
+
+[ext_resource type="Script" uid="uid://bbaql7nsslqcn" path="res://Surfaces/SurfaceType.gd" id="1_4e74m"]
+
+[resource]
+script = ExtResource("1_4e74m")
+surface_type = "Asphalt"
+friction_multi = 1.0
+accel_multi = 1.0
+max_speed_multi = 1.0
+turn_speed_multi = 1.0
+drift_factor_multi = 1.0
+color = Color(0.745098, 0.745098, 0.745098, 1)
+metadata/_custom_type_script = "uid://bbaql7nsslqcn"

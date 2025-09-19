@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SurfaceType" load_steps=2 format=3 uid="uid://vrg30lhal7vt"]
+
+[ext_resource type="Script" uid="uid://bbaql7nsslqcn" path="res://Surfaces/SurfaceType.gd" id="1_gm27i"]
+
+[resource]
+script = ExtResource("1_gm27i")
+surface_type = "Grass"
+friction_multi = 2.0
+accel_multi = 0.6
+max_speed_multi = 1.0
+turn_speed_multi = 1.2
+drift_factor_multi = 0.8
+color = Color(0.0476536, 0.637437, 0.0391174, 1)
+metadata/_custom_type_script = "uid://bbaql7nsslqcn"

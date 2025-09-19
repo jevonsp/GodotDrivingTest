@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://5gpme5ss7u0x"]
+
+[ext_resource type="Script" uid="uid://b0w4s2wns200p" path="res://TrackPieces/Base/track_piece.gd" id="1_6mj4s"]
+[ext_resource type="Resource" uid="uid://dcd7cfp8qj5gh" path="res://Surfaces/asphalt.tres" id="2_ss2jn"]
+[ext_resource type="Resource" uid="uid://vrg30lhal7vt" path="res://Surfaces/grass.tres" id="3_m8yd8"]
+
+[node name="TrackPieceBase" type="Node2D" node_paths=PackedStringArray("entry_point", "exit_point")]
+scale = Vector2(0.855795, 0.507896)
+script = ExtResource("1_6mj4s")
+main_track_type = ExtResource("2_ss2jn")
+outer_track_type = ExtResource("3_m8yd8")
+entry_point = NodePath("SnapPoints/EntryPoint")
+exit_point = NodePath("SnapPoints/ExitPoint")
+
+[node name="RoadSurface" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoadSurface"]
+
+[node name="Visual" type="Polygon2D" parent="RoadSurface"]
+z_index = 1
+polygon = PackedVector2Array(0, 250, 1000, 250, 1000, -250, 0, -250)
+uv = PackedVector2Array(-8, 160, 472, 160, 1440, 160, 1440, -88, -16, -88)
+
+[node name="OuterSurface" type="Area2D" parent="."]
+collision_layer = 4
+collision_priority = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OuterSurface"]
+
+[node name="Visual" type="Polygon2D" parent="OuterSurface"]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(0, 500, 1000, 500, 1000, -500, 0, -500)
+uv = PackedVector2Array(-8, 160, 472, 160, 1440, 160, 1440, -88, -16, -88)
+
+[node name="SnapPoints" type="Node2D" parent="."]
+
+[node name="EntryPoint" type="Node2D" parent="SnapPoints"]
+
+[node name="ExitPoint" type="Node2D" parent="SnapPoints"]
+position = Vector2(1000, 0)

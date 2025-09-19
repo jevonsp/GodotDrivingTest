@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://btq1subpdha12"]
+
+[ext_resource type="Script" uid="uid://c8ljd4b4asahw" path="res://Surfaces/surface.gd" id="1_tap8s"]
+
+[node name="Surface" type="Area2D"]
+z_index = -1
+script = ExtResource("1_tap8s")

@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://fn4glrv52tu8"]
+
+[ext_resource type="Script" uid="uid://53jo8ty7gro1" path="res://car/vehicle.gd" id="1_fouyv"]
+[ext_resource type="Texture2D" uid="uid://c36gca8d5bmtu" path="res://assets/car.png" id="2_yx515"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0ak5w"]
+radius = 12.0
+height = 62.0
+
+[sub_resource type="Gradient" id="Gradient_fouyv"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yx515"]
+gradient = SubResource("Gradient_fouyv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fouyv"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, 100, 0)
+emission_shape_scale = Vector3(200, 200, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+inherit_velocity_ratio = 0.5
+spread = 10.0
+gravity = Vector3(0, 0, 0)
+color_initial_ramp = SubResource("GradientTexture1D_yx515")
+
+[node name="Vehicle" type="CharacterBody2D" node_paths=PackedStringArray("drift_particles")]
+collision_mask = 6
+script = ExtResource("1_fouyv")
+drift_particles = NodePath("DriftParticles")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_yx515")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_0ak5w")
+
+[node name="DriftParticles" type="GPUParticles2D" parent="."]
+position = Vector2(-33, -12)
+scale = Vector2(0.110248, 0.108853)
+emitting = false
+amount = 100
+lifetime = 0.6
+interp_to_end = 0.2
+draw_order = 2
+process_material = SubResource("ParticleProcessMaterial_fouyv")

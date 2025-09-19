@@ -1,0 +1,41 @@
+# Godot 4+ specific ignores
+.godot/
+export_presets.cfg
+export_templates.cfg
+
+# Imported assets (do not commit these)
+*.import/
+
+# Scene-specific resources (optional but recommended)
+*.translation
+
+# Mono-specific ignores (if using C#)
+.mono/
+data_*/
+mono_crash.*.json
+GodotSharp/
+*.csproj
+*.sln
+*.userprefs
+
+# Build artifacts
+bin/
+obj/
+
+# System and IDE files
+.DS_Store
+*.swp
+*.swo
+*~
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDE specific (optional)
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.vs/

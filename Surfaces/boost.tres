@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SurfaceType" load_steps=2 format=3 uid="uid://duu2o4p3pnwnq"]
+
+[ext_resource type="Script" uid="uid://bbaql7nsslqcn" path="res://Surfaces/SurfaceType.gd" id="1_umtdk"]
+
+[resource]
+script = ExtResource("1_umtdk")
+surface_type = "Boost"
+friction_multi = 0.8
+accel_multi = 1.5
+max_speed_multi = 2.0
+drift_factor_multi = 0.6
+color = Color(1, 0, 0, 1)
+metadata/_custom_type_script = "uid://bbaql7nsslqcn"

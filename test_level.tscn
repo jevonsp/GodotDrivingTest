@@ -1,0 +1,184 @@
+[gd_scene load_steps=12 format=3 uid="uid://4k17wj6fuqwe"]
+
+[ext_resource type="PackedScene" uid="uid://j2j5fajcgwvt" path="res://car/racer.tscn" id="1_gojnm"]
+[ext_resource type="PackedScene" uid="uid://btq1subpdha12" path="res://Surfaces/surface.tscn" id="2_1c2mv"]
+[ext_resource type="Resource" uid="uid://vrg30lhal7vt" path="res://Surfaces/grass.tres" id="3_f7g2b"]
+[ext_resource type="Resource" uid="uid://cfkuw5qcj6uv" path="res://Surfaces/mud.tres" id="4_sb12i"]
+[ext_resource type="Resource" uid="uid://ctkvliyxn5py1" path="res://Surfaces/ice.tres" id="5_gbhdq"]
+[ext_resource type="Resource" uid="uid://duu2o4p3pnwnq" path="res://Surfaces/boost.tres" id="6_gbhdq"]
+[ext_resource type="PackedScene" uid="uid://bkbhv40y4bwg5" path="res://component/CheckPoint/check_point.tscn" id="7_lnbra"]
+[ext_resource type="Script" uid="uid://dhf28xm67w5te" path="res://component/CheckPoint/check_point.gd" id="8_6emce"]
+[ext_resource type="PackedScene" uid="uid://bsug6yviavosu" path="res://component/RaceManager/race_manager.tscn" id="9_6emce"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f7g2b"]
+size = Vector2(1558, 1149.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6emce"]
+size = Vector2(730, 38)
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="RaceManager" parent="." instance=ExtResource("9_6emce")]
+
+[node name="Racer" parent="." instance=ExtResource("1_gojnm")]
+position = Vector2(568, 338)
+
+[node name="Surfaces" type="Node2D" parent="."]
+
+[node name="Surface" parent="Surfaces" instance=ExtResource("2_1c2mv")]
+position = Vector2(-4, 25)
+surface_data = ExtResource("3_f7g2b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Surfaces/Surface"]
+position = Vector2(1833, 254)
+shape = SubResource("RectangleShape2D_f7g2b")
+
+[node name="ColorRect" type="ColorRect" parent="Surfaces/Surface"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1910.0
+offset_top = 249.0
+offset_right = 1950.0
+offset_bottom = 289.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Surface2" parent="Surfaces" instance=ExtResource("2_1c2mv")]
+position = Vector2(-1550, 985)
+surface_data = ExtResource("5_gbhdq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Surfaces/Surface2"]
+position = Vector2(1765, 141)
+shape = SubResource("RectangleShape2D_f7g2b")
+
+[node name="ColorRect" type="ColorRect" parent="Surfaces/Surface2"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1910.0
+offset_top = 249.0
+offset_right = 1950.0
+offset_bottom = 289.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Surface3" parent="Surfaces" instance=ExtResource("2_1c2mv")]
+position = Vector2(-1571, -741)
+surface_data = ExtResource("4_sb12i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Surfaces/Surface3"]
+position = Vector2(1756, 311)
+shape = SubResource("RectangleShape2D_f7g2b")
+
+[node name="ColorRect" type="ColorRect" parent="Surfaces/Surface3"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1910.0
+offset_top = 249.0
+offset_right = 1950.0
+offset_bottom = 289.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Surface4" parent="Surfaces" instance=ExtResource("2_1c2mv")]
+position = Vector2(-3125, 115)
+surface_data = ExtResource("6_gbhdq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Surfaces/Surface4"]
+position = Vector2(1756, 311)
+shape = SubResource("RectangleShape2D_f7g2b")
+
+[node name="ColorRect" type="ColorRect" parent="Surfaces/Surface4"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1910.0
+offset_top = 249.0
+offset_right = 1950.0
+offset_bottom = 289.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Checkpoints" type="Node2D" parent="."]
+
+[node name="CheckPoint" parent="Checkpoints" instance=ExtResource("7_lnbra")]
+position = Vector2(860, 352)
+rotation = 1.5708
+script = ExtResource("8_6emce")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoints/CheckPoint"]
+position = Vector2(19, 0)
+shape = SubResource("RectangleShape2D_6emce")
+
+[node name="ColorRect" type="ColorRect" parent="Checkpoints/CheckPoint"]
+offset_left = -5.0
+offset_top = -18.0
+offset_right = 35.0
+offset_bottom = 22.0
+metadata/_edit_use_anchors_ = true
+
+[node name="CheckPoint2" parent="Checkpoints" instance=ExtResource("7_lnbra")]
+position = Vector2(2318, -93)
+script = ExtResource("8_6emce")
+checkpoint_num = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoints/CheckPoint2"]
+position = Vector2(19, 0)
+shape = SubResource("RectangleShape2D_6emce")
+
+[node name="ColorRect" type="ColorRect" parent="Checkpoints/CheckPoint2"]
+offset_left = -5.0
+offset_top = -18.0
+offset_right = 35.0
+offset_bottom = 22.0
+metadata/_edit_use_anchors_ = true
+
+[node name="CheckPoint3" parent="Checkpoints" instance=ExtResource("7_lnbra")]
+position = Vector2(1020, -772)
+rotation = 1.5708
+script = ExtResource("8_6emce")
+checkpoint_num = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoints/CheckPoint3"]
+position = Vector2(19, 0)
+shape = SubResource("RectangleShape2D_6emce")
+
+[node name="ColorRect" type="ColorRect" parent="Checkpoints/CheckPoint3"]
+offset_left = -5.0
+offset_top = -18.0
+offset_right = 35.0
+offset_bottom = 22.0
+metadata/_edit_use_anchors_ = true
+
+[node name="CheckPoint4" parent="Checkpoints" instance=ExtResource("7_lnbra")]
+position = Vector2(509, -253)
+script = ExtResource("8_6emce")
+checkpoint_num = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoints/CheckPoint4"]
+position = Vector2(19, 0)
+shape = SubResource("RectangleShape2D_6emce")
+
+[node name="ColorRect" type="ColorRect" parent="Checkpoints/CheckPoint4"]
+offset_left = -5.0
+offset_top = -18.0
+offset_right = 35.0
+offset_bottom = 22.0
