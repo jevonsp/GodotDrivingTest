@@ -1,19 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://grhqv7046684"]
+[gd_scene load_steps=4 format=3 uid="uid://grhqv7046684"]
 
-[ext_resource type="PackedScene" uid="uid://5gpme5ss7u0x" path="res://TrackPieces/Base/TrackPieceBase.tscn" id="1_xodel"]
 [ext_resource type="PackedScene" uid="uid://j2j5fajcgwvt" path="res://car/racer.tscn" id="2_h6m55"]
-[ext_resource type="Resource" uid="uid://cfkuw5qcj6uv" path="res://Surfaces/mud.tres" id="2_rc3r0"]
-[ext_resource type="Resource" uid="uid://ctkvliyxn5py1" path="res://Surfaces/ice.tres" id="3_v6yru"]
+[ext_resource type="PackedScene" uid="uid://bmc1r3bqgf7l2" path="res://TrackPieces/track_piece_curve.tscn" id="2_rc3r0"]
+[ext_resource type="PackedScene" uid="uid://drcck4yv2s1u8" path="res://TrackPieces/track_piece_straight.tscn" id="3_v6yru"]
 
 [node name="TrackTesting" type="Node2D"]
 
-[node name="TrackPieceBase" parent="." instance=ExtResource("1_xodel")]
-position = Vector2(109, 15)
-main_track_type = ExtResource("2_rc3r0")
-outer_track_type = ExtResource("3_v6yru")
-
-[node name="TrackPieceBase2" parent="." instance=ExtResource("1_xodel")]
-position = Vector2(964.795, 15)
-
 [node name="Racer" parent="." instance=ExtResource("2_h6m55")]
 z_index = 2
+
+[node name="TrackPieceBase" parent="." instance=ExtResource("3_v6yru")]
+position = Vector2(-130, 238)
+
+[node name="TrackPieceCurve" parent="." instance=ExtResource("2_rc3r0")]
+position = Vector2(915, -258)
+scale = Vector2(0.720861, 0.495858)

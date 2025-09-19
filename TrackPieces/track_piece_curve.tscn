@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmc1r3bqgf7l2"]
+
+[ext_resource type="Script" uid="uid://b0w4s2wns200p" path="res://TrackPieces/Base/track_piece.gd" id="1_70oht"]
+[ext_resource type="Resource" uid="uid://dcd7cfp8qj5gh" path="res://Surfaces/asphalt.tres" id="2_e0e85"]
+[ext_resource type="Resource" uid="uid://vrg30lhal7vt" path="res://Surfaces/grass.tres" id="3_e2kfd"]
+
+[node name="TrackPieceCurve" type="Node2D" node_paths=PackedStringArray("entry_point", "exit_point")]
+scale = Vector2(0.855795, 0.507896)
+script = ExtResource("1_70oht")
+main_track_type = ExtResource("2_e0e85")
+outer_track_type = ExtResource("3_e2kfd")
+entry_point = NodePath("SnapPoints/EntryPoint")
+exit_point = NodePath("SnapPoints/ExitPoint")
+auto_position_snap_points = false
+is_curved = true
+curve_radius = 1000.0
+track_width = 500.0
+
+[node name="RoadSurface" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RoadSurface"]
+polygon = PackedVector2Array(1250, 0, 1243.98, 122.521, 1225.98, 243.863, 1196.18, 362.856, 1154.85, 478.354, 1102.4, 589.246, 1039.34, 694.463, 966.263, 792.992, 883.883, 883.883, 792.992, 966.263, 694.463, 1039.34, 589.246, 1102.4, 478.354, 1154.85, 362.856, 1196.18, 243.863, 1225.98, 122.521, 1243.98, 7.65379e-14, 1250, 4.59227e-14, 750, 73.5129, 746.389, 146.318, 735.589, 217.714, 717.705, 287.013, 692.91, 353.548, 661.441, 416.678, 623.602, 475.795, 579.758, 530.33, 530.33, 579.758, 475.795, 623.602, 416.678, 661.441, 353.548, 692.91, 287.013, 717.705, 217.714, 735.589, 146.318, 746.389, 73.5129, 750, 0)
+
+[node name="Visual" type="Polygon2D" parent="RoadSurface"]
+z_index = 1
+color = Color(0.745098, 0.745098, 0.745098, 1)
+polygon = PackedVector2Array(1250, 0, 1243.98, 122.521, 1225.98, 243.863, 1196.18, 362.856, 1154.85, 478.354, 1102.4, 589.246, 1039.34, 694.463, 966.263, 792.992, 883.883, 883.883, 792.992, 966.263, 694.463, 1039.34, 589.246, 1102.4, 478.354, 1154.85, 362.856, 1196.18, 243.863, 1225.98, 122.521, 1243.98, 7.65379e-14, 1250, 4.59227e-14, 750, 73.5129, 746.389, 146.318, 735.589, 217.714, 717.705, 287.013, 692.91, 353.548, 661.441, 416.678, 623.602, 475.795, 579.758, 530.33, 530.33, 579.758, 475.795, 623.602, 416.678, 661.441, 353.548, 692.91, 287.013, 717.705, 217.714, 735.589, 146.318, 746.389, 73.5129, 750, 0)
+uv = PackedVector2Array(-8, 160, 472, 160, 1440, 160, 1440, -88, -16, -88)
+
+[node name="OuterSurface" type="Area2D" parent="."]
+collision_layer = 4
+collision_priority = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="OuterSurface"]
+polygon = PackedVector2Array(2000, 0, 1990.37, 196.034, 1961.57, 390.181, 1913.88, 580.569, 1847.76, 765.367, 1763.84, 942.793, 1662.94, 1111.14, 1546.02, 1268.79, 1414.21, 1414.21, 1268.79, 1546.02, 1111.14, 1662.94, 942.793, 1763.84, 765.367, 1847.76, 580.569, 1913.88, 390.181, 1961.57, 196.034, 1990.37, 1.22461e-13, 2000, 3.06152e-14, 500, 49.0086, 497.592, 97.5452, 490.393, 145.142, 478.47, 191.342, 461.94, 235.698, 440.961, 277.785, 415.735, 317.197, 386.505, 353.553, 353.553, 386.505, 317.197, 415.735, 277.785, 440.961, 235.698, 461.94, 191.342, 478.47, 145.142, 490.393, 97.5452, 497.592, 49.0086, 500, 0)
+
+[node name="Visual" type="Polygon2D" parent="OuterSurface"]
+color = Color(0.0476536, 0.637437, 0.0391174, 1)
+polygon = PackedVector2Array(2000, 0, 1990.37, 196.034, 1961.57, 390.181, 1913.88, 580.569, 1847.76, 765.367, 1763.84, 942.793, 1662.94, 1111.14, 1546.02, 1268.79, 1414.21, 1414.21, 1268.79, 1546.02, 1111.14, 1662.94, 942.793, 1763.84, 765.367, 1847.76, 580.569, 1913.88, 390.181, 1961.57, 196.034, 1990.37, 1.22461e-13, 2000, 3.06152e-14, 500, 49.0086, 497.592, 97.5452, 490.393, 145.142, 478.47, 191.342, 461.94, 235.698, 440.961, 277.785, 415.735, 317.197, 386.505, 353.553, 353.553, 386.505, 317.197, 415.735, 277.785, 440.961, 235.698, 461.94, 191.342, 478.47, 145.142, 490.393, 97.5452, 497.592, 49.0086, 500, 0)
+uv = PackedVector2Array(-8, 160, 472, 160, 1440, 160, 1440, -88, -16, -88)
+
+[node name="SnapPoints" type="Node2D" parent="."]
+
+[node name="EntryPoint" type="Node2D" parent="SnapPoints"]
+position = Vector2(2.33701, 1010.05)
+scale = Vector2(1.19336, 1e-05)
+
+[node name="ExitPoint" type="Node2D" parent="SnapPoints"]
+position = Vector2(1002.58, 17.7202)
+rotation = 1.5708
