@@ -11,6 +11,7 @@ main_track_type = ExtResource("2_ss2jn")
 outer_track_type = ExtResource("3_m8yd8")
 entry_point = NodePath("SnapPoints/EntryPoint")
 exit_point = NodePath("SnapPoints/ExitPoint")
+auto_position_snap_points = false
 
 [node name="RoadSurface" type="Area2D" parent="."]
 collision_layer = 2

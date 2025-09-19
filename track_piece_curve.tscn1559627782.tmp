@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://qf0lkje25qlf"]
+
+[ext_resource type="Script" uid="uid://b0w4s2wns200p" path="res://TrackPieces/Base/track_piece.gd" id="1_0a17g"]
+[ext_resource type="Resource" uid="uid://dcd7cfp8qj5gh" path="res://Surfaces/asphalt.tres" id="2_01sd0"]
+[ext_resource type="Resource" uid="uid://vrg30lhal7vt" path="res://Surfaces/grass.tres" id="3_ws4qe"]
+
+[node name="TrackPieceCurve" type="Node2D" node_paths=PackedStringArray("entry_point", "exit_point")]
+scale = Vector2(0.855795, 0.507896)
+script = ExtResource("1_0a17g")
+main_track_type = ExtResource("2_01sd0")
+outer_track_type = ExtResource("3_ws4qe")
+entry_point = NodePath("SnapPoints/EntryPoint")
+exit_point = NodePath("SnapPoints/ExitPoint")
+is_curved = true
+curve_radius = 800.0
+track_width = 500.0
+
+[node name="RoadSurface" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RoadSurface"]
+
+[node name="Visual" type="Polygon2D" parent="RoadSurface"]
+z_index = 1
+color = Color(0.745098, 0.745098, 0.745098, 1)
+polygon = PackedVector2Array(1000, 0, 995.185, 98.0171, 980.785, 195.09, 956.94, 290.285, 923.88, 382.683, 881.921, 471.397, 831.47, 555.57, 773.01, 634.393, 707.107, 707.107, 634.393, 773.01, 555.57, 831.47, 471.397, 881.921, 382.683, 923.88, 290.285, 956.94, 195.09, 980.785, 98.0171, 995.185, 6.12303e-14, 1000, 3.67382e-14, 600, 58.8103, 597.111, 117.054, 588.471, 174.171, 574.164, 229.61, 554.328, 282.838, 529.153, 333.342, 498.882, 380.636, 463.806, 424.264, 424.264, 463.806, 380.636, 498.882, 333.342, 529.153, 282.838, 554.328, 229.61, 574.164, 174.171, 588.471, 117.054, 597.111, 58.8103, 600, 0)
+uv = PackedVector2Array(-8, 160, 472, 160, 1440, 160, 1440, -88, -16, -88)
+
+[node name="OuterSurface" type="Area2D" parent="."]
+collision_layer = 4
+collision_priority = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="OuterSurface"]
+
+[node name="Visual" type="Polygon2D" parent="OuterSurface"]
+color = Color(0.0476536, 0.637437, 0.0391174, 1)
+polygon = PackedVector2Array(1200, 0, 1194.22, 117.621, 1176.94, 234.108, 1148.33, 348.342, 1108.66, 459.22, 1058.31, 565.676, 997.764, 666.684, 927.613, 761.272, 848.528, 848.528, 761.272, 927.613, 666.684, 997.764, 565.676, 1058.31, 459.22, 1108.66, 348.342, 1148.33, 234.108, 1176.94, 117.621, 1194.22, 7.34764e-14, 1200, 2.44921e-14, 400, 39.2069, 398.074, 78.0361, 392.314, 116.114, 382.776, 153.073, 369.552, 188.559, 352.768, 222.228, 332.588, 253.757, 309.204, 282.843, 282.843, 309.204, 253.757, 332.588, 222.228, 352.768, 188.559, 369.552, 153.073, 382.776, 116.114, 392.314, 78.0361, 398.074, 39.2069, 400, 0)
+uv = PackedVector2Array(-8, 160, 472, 160, 1440, 160, 1440, -88, -16, -88)
+
+[node name="SnapPoints" type="Node2D" parent="."]
+
+[node name="EntryPoint" type="Node2D" parent="SnapPoints"]
+position = Vector2(-1.21208, 784.184)
+
+[node name="ExitPoint" type="Node2D" parent="SnapPoints"]
+position = Vector2(798.088, 3.93781)
+rotation = 1.5708

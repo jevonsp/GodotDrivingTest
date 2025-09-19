@@ -4,13 +4,14 @@
 [ext_resource type="Resource" uid="uid://dcd7cfp8qj5gh" path="res://Surfaces/asphalt.tres" id="2_oooma"]
 [ext_resource type="Resource" uid="uid://vrg30lhal7vt" path="res://Surfaces/grass.tres" id="3_knm25"]
 
-[node name="TrackPieceBase" type="Node2D" node_paths=PackedStringArray("entry_point", "exit_point")]
+[node name="TrackPieceStraight" type="Node2D" node_paths=PackedStringArray("entry_point", "exit_point")]
 scale = Vector2(0.855795, 0.507896)
 script = ExtResource("1_mfms2")
 main_track_type = ExtResource("2_oooma")
 outer_track_type = ExtResource("3_knm25")
 entry_point = NodePath("SnapPoints/EntryPoint")
 exit_point = NodePath("SnapPoints/ExitPoint")
+auto_position_snap_points = false
 
 [node name="RoadSurface" type="Area2D" parent="."]
 collision_layer = 2

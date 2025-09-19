@@ -1,5 +1,3 @@
-res://TrackPieces/track_piece_curve.tscn
-res://TrackPieces/Base/track_piece.gd
 res://track_testing.tscn
-res://TrackPieces/track_piece_straight.tscn
-res://TrackPieces/Base/TrackPieceBase.tscn
+res://TrackPieces/Base/track_piece.gd
+res://track_piece_curve.tscn
