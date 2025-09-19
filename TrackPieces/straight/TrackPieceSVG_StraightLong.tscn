@@ -1,0 +1,106 @@
+[gd_scene load_steps=11 format=3 uid="uid://b1d6kd1squasj"]
+
+[ext_resource type="Script" uid="uid://b0w4s2wns200p" path="res://TrackPieces/Base/track_piece.gd" id="1_ptdhf"]
+[ext_resource type="Resource" uid="uid://dcd7cfp8qj5gh" path="res://Surfaces/asphalt.tres" id="2_g4g4p"]
+[ext_resource type="Resource" uid="uid://vrg30lhal7vt" path="res://Surfaces/grass.tres" id="3_h0pyk"]
+[ext_resource type="Script" uid="uid://de3jpss66xjfh" path="res://addons/curved_lines_2d/scalable_vector_shape_2d.gd" id="4_5he5u"]
+[ext_resource type="Script" uid="uid://dlbv4pit17dnu" path="res://addons/curved_lines_2d/scalable_arc.gd" id="5_5ljlq"]
+[ext_resource type="Script" uid="uid://dl1t88tthmwts" path="res://addons/curved_lines_2d/scalable_arc_list.gd" id="6_bgvf5"]
+
+[sub_resource type="Curve2D" id="Curve2D_ee73y"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -2000, -250, 0, 0, 0, 0, 2000, -250, 0, 0, 0, 0, 2000, 250, 0, 0, 0, 0, -2000, 250, 0, 0, 0, 0, -2000, -250)
+}
+point_count = 5
+
+[sub_resource type="Resource" id="Resource_kpea6"]
+resource_local_to_scene = true
+script = ExtResource("6_bgvf5")
+arcs = Array[ExtResource("5_5ljlq")]([])
+
+[sub_resource type="Curve2D" id="Curve2D_2knpu"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -2000, -500, 0, 0, 0, 0, 2000, -500, 0, 0, 0, 0, 2000, 500, 0, 0, 0, 0, -2000, 500, 0, 0, 0, 0, -2000, -500)
+}
+point_count = 5
+
+[sub_resource type="Resource" id="Resource_0m2mv"]
+resource_local_to_scene = true
+script = ExtResource("6_bgvf5")
+arcs = Array[ExtResource("5_5ljlq")]([])
+
+[node name="StraightLong" type="Node2D" node_paths=PackedStringArray("entry_point", "exit_point")]
+scale = Vector2(0.855795, 0.507896)
+script = ExtResource("1_ptdhf")
+main_track_type = ExtResource("2_g4g4p")
+outer_track_type = ExtResource("3_h0pyk")
+entry_point = NodePath("SnapPoints/EntryPoint")
+exit_point = NodePath("SnapPoints/ExitPoint")
+
+[node name="RoadSurface" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="Rectangle" type="Node2D" parent="RoadSurface" node_paths=PackedStringArray("polygon", "line")]
+z_index = 1
+position = Vector2(2000, 0)
+script = ExtResource("4_5he5u")
+polygon = NodePath("Fill")
+line = NodePath("Stroke")
+curve = SubResource("Curve2D_ee73y")
+update_curve_at_runtime = true
+arc_list = SubResource("Resource_kpea6")
+shape_type = 1
+size = Vector2(4000, 500)
+
+[node name="Fill" type="Polygon2D" parent="RoadSurface/Rectangle"]
+color = Color(0.745098, 0.745098, 0.745098, 1)
+polygon = PackedVector2Array(-2000, -250, 2000, -250, 2000, 250, -2000, 250)
+metadata/_edit_lock_ = true
+
+[node name="Stroke" type="Line2D" parent="RoadSurface/Rectangle"]
+points = PackedVector2Array(-2000, -250, 2000, -250, 2000, 250, -2000, 250)
+closed = true
+sharp_limit = 90.0
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RoadSurface"]
+polygon = PackedVector2Array(0, -250, 4000, -250, 4000, 250, 0, 250)
+
+[node name="OuterSurface" type="Area2D" parent="."]
+position = Vector2(0, -5.90672)
+collision_layer = 4
+collision_priority = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="OuterSurface"]
+polygon = PackedVector2Array(0, -500, 4000, -500, 4000, 500, 0, 500)
+
+[node name="Rectangle" type="Node2D" parent="OuterSurface" node_paths=PackedStringArray("polygon", "line")]
+position = Vector2(2000, 0)
+script = ExtResource("4_5he5u")
+polygon = NodePath("Fill")
+line = NodePath("Stroke")
+curve = SubResource("Curve2D_2knpu")
+update_curve_at_runtime = true
+arc_list = SubResource("Resource_0m2mv")
+shape_type = 1
+size = Vector2(4000, 1000)
+
+[node name="Fill" type="Polygon2D" parent="OuterSurface/Rectangle"]
+color = Color(0.0476536, 0.637437, 0.0391174, 1)
+polygon = PackedVector2Array(-2000, -500, 2000, -500, 2000, 500, -2000, 500)
+metadata/_edit_lock_ = true
+
+[node name="Stroke" type="Line2D" parent="OuterSurface/Rectangle"]
+points = PackedVector2Array(-2000, -500, 2000, -500, 2000, 500, -2000, 500)
+closed = true
+sharp_limit = 90.0
+metadata/_edit_lock_ = true
+
+[node name="SnapPoints" type="Node2D" parent="."]
+
+[node name="EntryPoint" type="Node2D" parent="SnapPoints"]
+
+[node name="ExitPoint" type="Node2D" parent="SnapPoints"]
+position = Vector2(4000, 0)

@@ -11,9 +11,6 @@ main_track_type = ExtResource("2_01sd0")
 outer_track_type = ExtResource("3_ws4qe")
 entry_point = NodePath("SnapPoints/EntryPoint")
 exit_point = NodePath("SnapPoints/ExitPoint")
-is_curved = true
-curve_radius = 800.0
-track_width = 500.0
 
 [node name="RoadSurface" type="Area2D" parent="."]
 position = Vector2(-2.33701, -793.47)

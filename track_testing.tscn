@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://j2j5fajcgwvt" path="res://car/racer.tscn" id="2_h6m55"]
 [ext_resource type="Resource" uid="uid://duu2o4p3pnwnq" path="res://Surfaces/boost.tres" id="3_e000b"]
-[ext_resource type="PackedScene" uid="uid://qf0lkje25qlf" path="res://track_piece_curve.tscn" id="3_h6m55"]
-[ext_resource type="PackedScene" uid="uid://drcck4yv2s1u8" path="res://TrackPieces/track_piece_straight.tscn" id="3_v6yru"]
+[ext_resource type="PackedScene" uid="uid://qf0lkje25qlf" path="res://TrackPieces/track_piece_v1/track_piece_curve.tscn" id="3_h6m55"]
+[ext_resource type="PackedScene" uid="uid://drcck4yv2s1u8" path="res://TrackPieces/track_piece_v1/track_piece_straight.tscn" id="3_v6yru"]
 [ext_resource type="Resource" uid="uid://dcd7cfp8qj5gh" path="res://Surfaces/asphalt.tres" id="4_g38xe"]
 
 [node name="TrackTesting" type="Node2D"]

@@ -1,15 +1,22 @@
 extends Node2D
 
 @export var total_laps: int = 3
+@export var timer: Timer
 
 var total_checkpoints: int = 0
 var current_checkpoint: int = 0
 var current_lap: int = 0
+var lap_timer: float = 0.0
+var race_timer: float = 0.0
 
 func _ready() -> void:
 	add_to_group("race_manager")
 	call_deferred("count_checkpoints")
-
+	
+func _process(delta: float) -> void:
+	if current_checkpoint > 0 and current_lap < total_laps:
+		lap_timer += delta
+	
 func count_checkpoints():
 	var checkpoints = get_tree().get_nodes_in_group("checkpoints")
 	total_checkpoints = checkpoints.size()
@@ -27,7 +34,11 @@ func enter_checkpoint(num: int) -> void:
 			print("Lap ", current_lap, "/", total_laps, " completed!")
 			if current_lap >= total_laps:
 				print("Race Finished!")
+				print("Race finished in: ", "%.2f" % race_timer)
 			else:
+				print("Lap finished in: ", "%.2f" % lap_timer, "seconds!")
+				race_timer += lap_timer
+				lap_timer = 0.0
 				print("Starting lap ", current_lap + 1, " - next: checkpoint 1")
 		else:
 			print("Must complete all checkpoints before returning to start!")

@@ -13,17 +13,7 @@ extends Node2D
 # ----------------------
 @export var entry_point: Node2D
 @export var exit_point: Node2D
-@export var snap_enabled: bool = true  # Only snapping enabled/disabled
-
-# ----------------------
-# Curve Settings
-# ----------------------
-@export_subgroup("Curve Settings")
-@export var is_curved: bool = false
-@export var curve_radius: float = 200.0
-@export var curve_angle: float = 90.0
-@export var track_width: float = 100.0
-@export var resolution: int = 16
+@export var snap_enabled: bool = true
 
 # ----------------------
 # Runtime Vars
@@ -35,8 +25,6 @@ var on_outer: bool = false
 # ----------------------
 # Node references
 # ----------------------
-@onready var main_visual = $RoadSurface/Visual
-@onready var outer_visual = $OuterSurface/Visual
 @onready var main_track = $RoadSurface
 @onready var outer_track = $OuterSurface
 
@@ -49,41 +37,50 @@ func _ready():
 	else:
 		setup_runtime()
 
-func _process(delta: float) -> void:
-	if Engine.is_editor_hint() and is_curved:
-		generate_curve()
-		queue_redraw()
-
-func _draw():
-	if Engine.is_editor_hint() and entry_point and exit_point:
-		draw_circle(entry_point.global_position, 5, Color.BLUE)
-		draw_circle(exit_point.global_position, 5, Color.GREEN)
-		var dir = Vector2(cos(exit_angle()), sin(exit_angle())) * 20
-		draw_line(exit_point.global_position, exit_point.global_position + dir, Color.RED, 2)
-
 # ----------------------
 # Setup
 # ----------------------
 func setup_editor():
-	apply_colors()
+	setup_surface(main_track, main_track_type)
+	setup_surface(outer_track, outer_track_type)
 	create_snap_points_if_missing()
-	if is_curved:
-		generate_curve()
 
 func setup_runtime():
-	apply_colors()
-	setup_collision_shapes()
+	setup_surface(main_track, main_track_type)
+	setup_surface(outer_track, outer_track_type)
 	connect_signals()
 
-func apply_colors():
-	if main_track_type:
-		main_visual.color = main_track_type.color
-	if outer_track_type:
-		outer_visual.color = outer_track_type.color
+func setup_surface(surface_node: Node, surface_type: SurfaceType) -> void:
+	if not surface_node or not surface_type:
+		return
 
-func setup_collision_shapes():
-	main_track.get_node("CollisionPolygon2D").polygon = main_visual.polygon
-	outer_track.get_node("CollisionPolygon2D").polygon = outer_visual.polygon
+	var collision: CollisionPolygon2D = surface_node.get_node_or_null("CollisionPolygon2D")
+	if not collision:
+		return
+
+	# Look for a child with a node named "Fill"
+	var fill: Node = null
+	for child in surface_node.get_children():
+		var candidate = child.get_node_or_null("Fill")
+		if candidate:
+			fill = candidate
+			break
+
+	if fill:
+		# Apply color
+		if "color" in fill:
+			fill.color = surface_type.color
+
+		# Sync polygon, adjusting for transforms
+		if "polygon" in fill:
+			var transformed_poly := PackedVector2Array()
+			for p in fill.polygon:
+				# Convert from Fill local → Collision local
+				var global_point = fill.to_global(p)
+				var local_point = collision.to_local(global_point)
+				transformed_poly.append(local_point)
+			collision.polygon = transformed_poly
+
 
 func connect_signals():
 	main_track.body_entered.connect(_on_road_surface_body_entered)
@@ -151,66 +148,6 @@ func snap_to(other: TrackPiece):
 	rotation += angle_diff
 
 # ----------------------
-# Curve Generation
-# ----------------------
-func generate_curve():
-	if not main_visual:
-		return
-
-	var angle_rad = deg_to_rad(curve_angle)
-	var half_width = track_width / 2
-	var inner_r = max(10, curve_radius - half_width)
-	var outer_r = curve_radius + half_width
-
-	var main_outer_points = []
-	var main_inner_points = []
-
-	for i in range(resolution + 1):
-		var t = float(i) / resolution
-		var a = t * angle_rad
-
-		var point_on_radius = Vector2(curve_radius * cos(a), curve_radius * sin(a))
-
-		# 2D perpendicular (right-hand normal)
-		var tangent = Vector2(-sin(a), cos(a)).normalized()
-		var normal = Vector2(-tangent.y, tangent.x)
-
-		main_outer_points.append(point_on_radius + normal * half_width)
-		main_inner_points.append(point_on_radius - normal * half_width)
-
-	# Build main polygon
-	var main_poly = PackedVector2Array()
-	for p in main_outer_points:
-		main_poly.append(p)
-	for i in range(main_inner_points.size() - 1, -1, -1):
-		main_poly.append(main_inner_points[i])
-	main_visual.polygon = main_poly
-
-	# Outer visual offset curve
-	if outer_visual:
-		var offset = half_width
-		var outer_points = []
-		var inner_points = []
-
-		for i in range(resolution + 1):
-			var t = float(i) / resolution
-			var a = t * angle_rad
-
-			var point_on_radius = Vector2(curve_radius * cos(a), curve_radius * sin(a))
-			var tangent = Vector2(-sin(a), cos(a)).normalized()
-			var normal = Vector2(-tangent.y, tangent.x)
-
-			outer_points.append(point_on_radius + normal * (half_width + offset))
-			inner_points.append(point_on_radius - normal * (half_width + offset))
-
-		var outer_poly = PackedVector2Array()
-		for p in outer_points:
-			outer_poly.append(p)
-		for i in range(inner_points.size() - 1, -1, -1):
-			outer_poly.append(inner_points[i])
-		outer_visual.polygon = outer_poly
-
-# ----------------------
 # Snap Points Creation (manual)
 # ----------------------
 func create_snap_points_if_missing():
@@ -233,4 +170,4 @@ func create_snap_points_if_missing():
 		exit_point.name = "ExitPoint"
 		container.add_child(exit_point)
 		exit_point.owner = get_tree().edited_scene_root
-		exit_point.position = Vector2(100, 0)  # Default, editable manually
+		exit_point.position = Vector2(100, 0)  # default position

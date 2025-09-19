@@ -1,3 +1,13 @@
-res://track_testing.tscn
+res://TrackPieces/Base/TrackPieceSVGTest.tscn
 res://TrackPieces/Base/track_piece.gd
-res://track_piece_curve.tscn
+res://track_testing.tscn
+res://TrackPieces/track_piece_curve.tscn
+res://TrackPieces/Base/TrackPieceBase.tscn
+res://track_testing2.tscn
+res://car/racer.tscn
+res://car/vehicle.gd
+res://TrackPieces/straight/TrackPieceSVG_StraightShort.tscn
+res://TrackPieces/straight/TrackPieceSVG_StraightMedium.tscn
+res://TrackPieces/quarter_curves/TrackPieceSVG_QuarterCurve.tscn
+res://TrackPieces/straight/TrackPieceSVG_StraightLong.tscn
+res://component/RaceManager/race_manager.gd

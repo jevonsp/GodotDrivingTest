@@ -1,0 +1,173 @@
+[gd_scene load_steps=14 format=3 uid="uid://csequtpq0hcrw"]
+
+[ext_resource type="PackedScene" uid="uid://j2j5fajcgwvt" path="res://car/racer.tscn" id="1_gltqn"]
+[ext_resource type="PackedScene" uid="uid://bsug6yviavosu" path="res://component/RaceManager/race_manager.tscn" id="2_om8eo"]
+[ext_resource type="Resource" uid="uid://duu2o4p3pnwnq" path="res://Surfaces/boost.tres" id="3_ky01a"]
+[ext_resource type="PackedScene" uid="uid://bl54axhaxsyek" path="res://TrackPieces/straight/TrackPieceSVG_StraightShort.tscn" id="3_om8eo"]
+[ext_resource type="PackedScene" uid="uid://dtv5vqlmxskwd" path="res://TrackPieces/straight/TrackPieceSVG_StraightMedium.tscn" id="4_8haa8"]
+[ext_resource type="PackedScene" uid="uid://b1d6kd1squasj" path="res://TrackPieces/straight/TrackPieceSVG_StraightLong.tscn" id="5_gltqn"]
+[ext_resource type="PackedScene" uid="uid://bqafytgra252u" path="res://TrackPieces/quarter_curves/TrackPieceSVG_QuarterCurve.tscn" id="6_p3w0e"]
+[ext_resource type="PackedScene" uid="uid://bkbhv40y4bwg5" path="res://component/CheckPoint/check_point.tscn" id="7_ky01a"]
+[ext_resource type="Resource" uid="uid://ctkvliyxn5py1" path="res://Surfaces/ice.tres" id="7_rtvub"]
+[ext_resource type="Script" uid="uid://dhf28xm67w5te" path="res://component/CheckPoint/check_point.gd" id="8_t0wcw"]
+[ext_resource type="Resource" uid="uid://cfkuw5qcj6uv" path="res://Surfaces/mud.tres" id="9_we1t5"]
+[ext_resource type="Resource" uid="uid://vrg30lhal7vt" path="res://Surfaces/grass.tres" id="10_yqrqr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t0wcw"]
+
+[node name="TrackTesting" type="Node2D"]
+
+[node name="Racer" parent="." instance=ExtResource("1_gltqn")]
+z_index = 3
+position = Vector2(1266, 251)
+
+[node name="RaceManager" parent="." node_paths=PackedStringArray("timer") instance=ExtResource("2_om8eo")]
+timer = NodePath("")
+
+[node name="StraightShort" parent="." instance=ExtResource("3_om8eo")]
+position = Vector2(390, 176)
+scale = Vector2(0.855795, 1.1654)
+main_track_type = ExtResource("3_ky01a")
+
+[node name="StraightMedium" parent="." instance=ExtResource("4_8haa8")]
+position = Vector2(1245.8, 176)
+scale = Vector2(0.858803, 1.16716)
+main_track_type = ExtResource("3_ky01a")
+
+[node name="StraightLong" parent="." instance=ExtResource("5_gltqn")]
+position = Vector2(2957.39, 176)
+scale = Vector2(0.828668, 1.15884)
+main_track_type = ExtResource("7_rtvub")
+
+[node name="QuarterCurve" parent="." instance=ExtResource("6_p3w0e")]
+position = Vector2(6272, 168)
+rotation = 1.5708
+scale = Vector2(1, 1)
+main_track_type = ExtResource("3_ky01a")
+
+[node name="StraightShort2" parent="." instance=ExtResource("3_om8eo")]
+position = Vector2(8244.84, 1335.34)
+rotation = 1.5708
+scale = Vector2(0.837153, 1.96067)
+main_track_type = ExtResource("9_we1t5")
+
+[node name="QuarterCurve2" parent="." instance=ExtResource("6_p3w0e")]
+position = Vector2(8244.84, 2172.49)
+rotation = -3.14159
+scale = Vector2(1.67714, 0.768466)
+main_track_type = ExtResource("3_ky01a")
+
+[node name="StraightShort3" parent="." instance=ExtResource("3_om8eo")]
+position = Vector2(6287.06, 3688.55)
+rotation = 3.14159
+scale = Vector2(0.964045, 1.50303)
+main_track_type = ExtResource("3_ky01a")
+
+[node name="StraightMedium2" parent="." instance=ExtResource("4_8haa8")]
+position = Vector2(5323.01, 3688.55)
+rotation = 3.14159
+scale = Vector2(0.967433, 1.50529)
+main_track_type = ExtResource("10_yqrqr")
+
+[node name="StraightLong2" parent="." instance=ExtResource("5_gltqn")]
+position = Vector2(3388.15, 3688.55)
+rotation = 3.14159
+scale = Vector2(0.933486, 1.49457)
+main_track_type = ExtResource("3_ky01a")
+
+[node name="QuarterCurve3" parent="." instance=ExtResource("6_p3w0e")]
+position = Vector2(-345.801, 3688.55)
+rotation = -1.5708
+scale = Vector2(1.27554, 0.976676)
+main_track_type = ExtResource("3_ky01a")
+
+[node name="StraightShort4" parent="." instance=ExtResource("3_om8eo")]
+position = Vector2(-2272.63, 2199.57)
+rotation = -1.5708
+scale = Vector2(0.626484, 1.96363)
+main_track_type = ExtResource("3_ky01a")
+
+[node name="QuarterCurve4" parent="." instance=ExtResource("6_p3w0e")]
+position = Vector2(-2272.63, 1573.08)
+scale = Vector2(1.67557, 0.704939)
+main_track_type = ExtResource("3_ky01a")
+
+[node name="StraightShort5" parent="." instance=ExtResource("3_om8eo")]
+position = Vector2(-316.674, 182.348)
+scale = Vector2(0.820681, 1.27759)
+main_track_type = ExtResource("3_ky01a")
+
+[node name="CheckPoint" parent="." instance=ExtResource("7_ky01a")]
+z_index = 1
+position = Vector2(1420, 217)
+scale = Vector2(-8.21527, -79.259)
+script = ExtResource("8_t0wcw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckPoint"]
+shape = SubResource("RectangleShape2D_t0wcw")
+
+[node name="ColorRect" type="ColorRect" parent="CheckPoint"]
+
+[node name="CheckPoint2" parent="." instance=ExtResource("7_ky01a")]
+z_index = 1
+position = Vector2(6141, 103)
+scale = Vector2(-8.21527, -79.259)
+script = ExtResource("8_t0wcw")
+checkpoint_num = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckPoint2"]
+shape = SubResource("RectangleShape2D_t0wcw")
+
+[node name="ColorRect" type="ColorRect" parent="CheckPoint2"]
+
+[node name="CheckPoint3" parent="." instance=ExtResource("7_ky01a")]
+z_index = 1
+position = Vector2(8227, 1938)
+rotation = -1.5708
+scale = Vector2(5.26951, 124.507)
+script = ExtResource("8_t0wcw")
+checkpoint_num = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckPoint3"]
+shape = SubResource("RectangleShape2D_t0wcw")
+
+[node name="ColorRect" type="ColorRect" parent="CheckPoint3"]
+
+[node name="CheckPoint4" parent="." instance=ExtResource("7_ky01a")]
+z_index = 1
+position = Vector2(6236, 3762)
+rotation = 3.14159
+scale = Vector2(8.21527, 79.259)
+script = ExtResource("8_t0wcw")
+checkpoint_num = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckPoint4"]
+shape = SubResource("RectangleShape2D_t0wcw")
+
+[node name="ColorRect" type="ColorRect" parent="CheckPoint4"]
+
+[node name="CheckPoint5" parent="." instance=ExtResource("7_ky01a")]
+z_index = 1
+position = Vector2(1707, 3726)
+rotation = 3.14159
+scale = Vector2(8.21527, 79.259)
+script = ExtResource("8_t0wcw")
+checkpoint_num = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckPoint5"]
+shape = SubResource("RectangleShape2D_t0wcw")
+
+[node name="ColorRect" type="ColorRect" parent="CheckPoint5"]
+
+[node name="CheckPoint6" parent="." instance=ExtResource("7_ky01a")]
+z_index = 1
+position = Vector2(-2368, 1914)
+rotation = -1.5708
+scale = Vector2(5.26951, 124.507)
+script = ExtResource("8_t0wcw")
+checkpoint_num = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckPoint6"]
+shape = SubResource("RectangleShape2D_t0wcw")
+
+[node name="ColorRect" type="ColorRect" parent="CheckPoint6"]
