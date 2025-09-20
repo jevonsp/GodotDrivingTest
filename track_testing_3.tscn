@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://ew73bri5slnt"]
+
+[ext_resource type="PackedScene" uid="uid://dtv5vqlmxskwd" path="res://TrackPieces/straight/TrackPieceSVG_StraightMedium.tscn" id="1_6isrx"]
+[ext_resource type="PackedScene" uid="uid://bsug6yviavosu" path="res://component/RaceManager/race_manager.tscn" id="1_j8vqv"]
+[ext_resource type="PackedScene" uid="uid://bqafytgra252u" path="res://TrackPieces/quarter_curves/TrackPieceSVG_QuarterCurve.tscn" id="2_8x1ln"]
+[ext_resource type="PackedScene" uid="uid://j2j5fajcgwvt" path="res://car/racer.tscn" id="2_klqql"]
+[ext_resource type="PackedScene" uid="uid://bkbhv40y4bwg5" path="res://component/CheckPoint/check_point.tscn" id="4_klqql"]
+
+[node name="TrackTesting3" type="Node2D"]
+
+[node name="RaceManager" parent="." instance=ExtResource("1_j8vqv")]
+
+[node name="Racer" parent="." instance=ExtResource("2_klqql")]
+position = Vector2(68, 3)
+
+[node name="TrackPieces" type="Node2D" parent="."]
+
+[node name="StraightMedium" parent="TrackPieces" instance=ExtResource("1_6isrx")]
+
+[node name="QuarterCurve" parent="TrackPieces" instance=ExtResource("2_8x1ln")]
+position = Vector2(1715, -5.99994)
+rotation = 1.5708
+
+[node name="StraightMedium2" parent="TrackPieces" instance=ExtResource("1_6isrx")]
+position = Vector2(2717, 993)
+rotation = 1.5708
+
+[node name="CheckPoints" type="Node2D" parent="."]
+
+[node name="CheckPoint" parent="CheckPoints" instance=ExtResource("4_klqql")]
+position = Vector2(378, 1)
+rotation = 1.5708

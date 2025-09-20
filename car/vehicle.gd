@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var drift_particles : GPUParticles2D
 
 var current_checkpoint: int = 0
-var current_speed: int
+var current_speed: float
 
 var max_speed: int
 var acceleration: int
@@ -50,17 +50,19 @@ func _physics_process(delta: float) -> void:
 	
 	is_drifting = Input.is_action_pressed("drift")
 	
-	if is_drifting and abs(current_speed) > 50:
+	if is_drifting and abs(current_speed) > 100 and abs(turn_input) >= 0.9:
+		velocity = velocity.lerp(Vector2(1.1 * current_speed, 0).rotated(rotation), drift_factor * delta * 10)
 		drift_particles.emitting = true
+	elif is_drifting and abs(current_speed) > 50:
 		velocity = velocity.lerp(Vector2(current_speed, 0).rotated(rotation), drift_factor * delta * 10)
 	else:
-		drift_particles.emitting = false
 		velocity = Vector2(current_speed, 0).rotated(rotation)
+		drift_particles.emitting = false
 	move_and_slide()
 
 func enter_surface(surface):
-	friction = base_friction * surface.accel_multi
-	acceleration = base_acceleration * surface.friction_multi
+	friction = base_friction * surface.friction_multi
+	acceleration = base_acceleration * surface.accel_multi
 	max_speed = base_max_speed * surface.max_speed_multi
 	drift_factor = base_drift_factor * surface.drift_factor_multi
 	turn_speed = base_turn_speed * surface.turn_speed_multi
